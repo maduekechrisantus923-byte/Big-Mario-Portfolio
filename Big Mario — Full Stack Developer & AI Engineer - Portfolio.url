@@ -1,2 +1,366 @@
-[InternetShortcut]
-URL=file:///C:/Users/Admin/Downloads/index_2.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big Mario — Full Stack Developer &amp; AI Engineer | Portfolio</title>
+<meta name="description" content="I build fast, scalable, production-ready web applications and AI-powered systems — from pixel-perfect UIs to intelligent backends.">
+<style>
+  :root{
+    --bg:#0a0a0c;
+    --bg-alt:#111114;
+    --panel:#151518;
+    --border:#25252a;
+    --text:#eaeaee;
+    --muted:#8b8b95;
+    --accent:#7CFF6B;
+    --accent-dim:#4fae44;
+    --mono: 'JetBrains Mono','Fira Code',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans: 'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,10,12,.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{font-family:var(--mono);font-weight:700;letter-spacing:.5px;font-size:15px;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{font-size:14px;color:var(--muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:9px 18px;
+    border-radius:6px;
+    background:var(--accent);
+    color:#08130a;
+    font-weight:700;
+    letter-spacing:.3px;
+    display:inline-block;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px rgba(124,255,107,.5);}
+  .btn-outline{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--text);
+  }
+  .btn-outline:hover{border-color:var(--accent);}
+
+  /* HERO */
+  .hero{padding:96px 0 64px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:12px;color:var(--accent);
+    border:1px solid rgba(124,255,107,.3);
+    background:rgba(124,255,107,.06);
+    padding:6px 14px;border-radius:999px;
+    margin-bottom:28px;
+  }
+  .badge:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+  h1.name{
+    font-family:var(--mono);
+    font-size:clamp(40px,7vw,84px);
+    font-weight:800;
+    letter-spacing:-2px;
+    line-height:1.02;
+    text-transform:uppercase;
+  }
+  .hero-role{
+    font-family:var(--mono);
+    font-size:14px;color:var(--accent);
+    letter-spacing:.5px;margin-top:20px;
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+  .hero-role .dot-sep{color:var(--muted);}
+  .hero-sub{
+    max-width:520px;margin-top:14px;
+    color:var(--muted);font-size:17px;
+  }
+  .hero-cta{display:flex;gap:14px;margin-top:36px;}
+
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start;
+  }
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+
+  .terminal{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    font-family:var(--mono);
+    font-size:13.5px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.6);
+  }
+  .terminal-bar{
+    display:flex;align-items:center;gap:8px;
+    padding:12px 16px;border-bottom:1px solid var(--border);
+    background:var(--bg-alt);
+  }
+  .dot{width:11px;height:11px;border-radius:50%;}
+  .dot.r{background:#ff5f56;} .dot.y{background:#ffbd2e;} .dot.g{background:#27c93f;}
+  .terminal-title{margin-left:8px;color:var(--muted);font-size:12px;}
+  .terminal-body{padding:22px;color:#c7c7d1;}
+  .terminal-body .c1{color:#6c6c78;}
+  .terminal-body .c2{color:#c586ff;}
+  .terminal-body .c3{color:#ffd479;}
+  .terminal-body .c4{color:var(--accent);}
+  .terminal-body .c5{color:#79c0ff;}
+  .terminal-body div{white-space:pre;margin-bottom:2px;}
+
+  /* SECTION LABEL */
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:2px;
+    color:var(--accent);text-transform:uppercase;margin-bottom:10px;
+  }
+  section{padding:80px 0;border-top:1px solid var(--border);}
+  h2.title{font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-1px;margin-bottom:40px;}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+  @media(max-width:900px){.skills-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:600px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  .skill-card{background:var(--panel);padding:26px 22px;}
+  .skill-card h3{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;color:var(--muted);margin-bottom:16px;}
+  .skill-card ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .skill-card li{font-size:14.5px;color:var(--text);display:flex;align-items:center;gap:8px;}
+  .skill-card li:before{content:"▸";color:var(--accent);font-size:12px;}
+
+  .marquee{
+    margin-top:44px;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;
+  }
+  .marquee-track{display:flex;gap:40px;white-space:nowrap;animation:scroll 26s linear infinite;font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:1px;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* PROJECTS */
+  .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  @media(max-width:760px){.projects-grid{grid-template-columns:1fr;}}
+  .project-card{
+    background:var(--panel);border:1px solid var(--border);border-radius:12px;
+    padding:28px;transition:border-color .2s, transform .2s;
+  }
+  .project-card:hover{border-color:var(--accent-dim);transform:translateY(-4px);}
+  .project-card .tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:1px;margin-bottom:14px;display:block;}
+  .project-card h3{font-size:19px;margin-bottom:10px;}
+  .project-card p{color:var(--muted);font-size:14.5px;margin-bottom:18px;}
+  .stackpills{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{font-family:var(--mono);font-size:11px;background:var(--bg-alt);border:1px solid var(--border);padding:4px 10px;border-radius:6px;color:var(--muted);}
+  .project-link{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:16px;font-family:var(--mono);font-size:12.5px;
+    color:var(--accent);border-bottom:1px solid transparent;
+    transition:border-color .2s;
+  }
+  .project-link:hover{border-color:var(--accent);}
+  .featured{border-color:var(--accent-dim);position:relative;}
+  .featured .tag{color:var(--accent);}
+
+  /* CONTACT */
+  .contact-wrap{
+    background:linear-gradient(160deg,var(--panel),var(--bg-alt));
+    border:1px solid var(--border);border-radius:16px;padding:56px;
+  }
+  @media(max-width:600px){.contact-wrap{padding:32px 22px;}}
+  .contact-wrap p.lead{max-width:520px;color:var(--muted);margin-bottom:36px;font-size:15.5px;}
+  .contact-methods{display:flex;flex-wrap:wrap;gap:16px;}
+  .contact-item{
+    display:flex;align-items:center;gap:14px;
+    background:var(--bg);border:1px solid var(--border);
+    padding:16px 20px;border-radius:10px;flex:1;min-width:260px;
+  }
+  .contact-item .ico{
+    width:38px;height:38px;border-radius:8px;background:rgba(124,255,107,.1);
+    display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;
+  }
+  .contact-item .label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:3px;}
+  .contact-item .value{font-size:15px;font-weight:600;word-break:break-word;}
+
+  footer{padding:32px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted);border-top:1px solid var(--border);}
+  footer span{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">BM<span>.DEV</span></div>
+      <div class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="btn">HIRE ME</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none;padding-top:80px;">
+  <div class="wrap">
+    <div class="badge">AVAILABLE FOR WORK</div>
+    <div class="hero-grid">
+      <div>
+        <h1 class="name">BIG<br>MARIO</h1>
+        <p class="hero-role">Full Stack Developer <span class="dot-sep">•</span> AI Engineer <span class="dot-sep">•</span> Builder</p>
+        <p class="hero-sub">I build fast, scalable, production-ready web applications — and design AI-powered systems that think, automate, and ship.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+          <div class="terminal-title">dev.profile</div>
+        </div>
+        <div class="terminal-body">
+<div><span class="c1">// mario.config.ts</span></div>
+<div>&nbsp;</div>
+<div><span class="c2">const</span> developer = {</div>
+<div>&nbsp;&nbsp;name: <span class="c3">"Big Mario"</span>,</div>
+<div>&nbsp;&nbsp;role: [<span class="c3">"Full Stack Developer"</span>, <span class="c3">"AI Engineer"</span>, <span class="c3">"Builder"</span>],</div>
+<div>&nbsp;&nbsp;stack: [<span class="c3">"Next.js"</span>, <span class="c3">"Node.js"</span>, <span class="c3">"TypeScript"</span>, <span class="c3">"MongoDB"</span>, <span class="c3">"Python"</span>, <span class="c3">"LLMs"</span>],</div>
+<div>&nbsp;&nbsp;experience: <span class="c3">"Senior"</span>,</div>
+<div>&nbsp;&nbsp;available: <span class="c5">true</span>,</div>
+<div>}</div>
+<div>&nbsp;</div>
+<div><span class="c1">// currently building</span></div>
+<div><span class="c2">export default</span> developer <span class="c4">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Skills</div>
+    <h2 class="title">My Tech Stack.</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>FRONTEND</h3>
+        <ul><li>Next.js</li><li>React</li><li>TypeScript</li><li>Tailwind CSS</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>BACKEND</h3>
+        <ul><li>Node.js</li><li>Express</li><li>REST APIs</li><li>JWT Auth</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>DATABASE</h3>
+        <ul><li>MongoDB</li><li>Mongoose</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>TOOLS</h3>
+        <ul><li>Git</li><li>GitHub</li><li>Vercel</li><li>Render</li></ul>
+      </div>
+      <div class="skill-card">
+        <h3>AI ENGINEERING</h3>
+        <ul><li>LLM Integration</li><li>Prompt Engineering</li><li>Python</li><li>Streamlit</li></ul>
+      </div>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>NEXT.JS</span><span>TYPESCRIPT</span><span>NODE.JS</span><span>MONGODB</span><span>EXPRESS.JS</span><span>REST APIS</span><span>JWT AUTH</span><span>TAILWIND CSS</span><span>GIT</span><span>VERCEL</span><span>RENDER</span><span>PYTHON</span><span>LLMS</span><span>STREAMLIT</span><span>PROMPT ENGINEERING</span><span>AI AGENTS</span>
+        <span>NEXT.JS</span><span>TYPESCRIPT</span><span>NODE.JS</span><span>MONGODB</span><span>EXPRESS.JS</span><span>REST APIS</span><span>JWT AUTH</span><span>TAILWIND CSS</span><span>GIT</span><span>VERCEL</span><span>RENDER</span><span>PYTHON</span><span>LLMS</span><span>STREAMLIT</span><span>PROMPT ENGINEERING</span><span>AI AGENTS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Projects</div>
+    <h2 class="title">Selected Work.</h2>
+    <div class="projects-grid">
+      <div class="project-card featured">
+        <span class="tag">AI PROJECT — LIVE</span>
+        <h3>NationTwin</h3>
+        <p>An AI-powered application exploring digital-twin style intelligence — built and shipped end-to-end, from model logic to a live interactive interface.</p>
+        <div class="stackpills"><span class="pill">Python</span><span class="pill">Streamlit</span><span class="pill">AI/LLM</span></div>
+        <a href="https://nationtwin.streamlit.app" target="_blank" rel="noopener noreferrer" class="project-link">Visit Live App →</a>
+      </div>
+      <div class="project-card">
+        <span class="tag">SAAS PLATFORM</span>
+        <h3>Logistics Manager</h3>
+        <p>A full logistics and fleet tracking platform with real-time delivery status and route management.</p>
+        <div class="stackpills"><span class="pill">Next.js</span><span class="pill">Node.js</span><span class="pill">MongoDB</span></div>
+      </div>
+      <div class="project-card">
+        <span class="tag">WEB APP</span>
+        <h3>Laundry Management System</h3>
+        <p>An order and inventory management system built for laundry businesses with billing and customer tracking.</p>
+        <div class="stackpills"><span class="pill">React</span><span class="pill">Express</span><span class="pill">MongoDB</span></div>
+      </div>
+      <div class="project-card">
+        <span class="tag">MVP</span>
+        <h3>Startup MVP Builder</h3>
+        <p>Rapid MVP development for early-stage startups, from idea validation to production-ready launch.</p>
+        <div class="stackpills"><span class="pill">TypeScript</span><span class="pill">REST API</span></div>
+      </div>
+      <div class="project-card">
+        <span class="tag">DASHBOARD</span>
+        <h3>Analytics Dashboard</h3>
+        <p>A data visualization dashboard with authenticated access, JWT-based sessions, and role management.</p>
+        <div class="stackpills"><span class="pill">React</span><span class="pill">JWT Auth</span><span class="pill">Tailwind</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2 class="title">Let's Work Together.</h2>
+    <div class="contact-wrap">
+      <p class="lead">I'm currently open to new opportunities — freelance projects, full-time roles, part-time roles, or interesting collaborations. If you have something in mind, let's talk.</p>
+      <div class="contact-methods">
+        <div class="contact-item">
+          <div class="ico">✉</div>
+          <div>
+            <div class="label">EMAIL</div>
+            <div class="value">maduekechrisantus923@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ico">☎</div>
+          <div>
+            <div class="label">PHONE</div>
+            <div class="value">0904 931 4796</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:36px;">
+        <div class="eyebrow" style="margin-bottom:6px;">READY TO BUILD?</div>
+        <h3 style="font-size:24px;margin-bottom:10px;">Have a project in mind?</h3>
+        <p style="color:var(--muted);max-width:560px;margin-bottom:22px;font-size:15px;">Whether it's a startup MVP, a logistics platform, an AI-powered tool, or a full SaaS product — I've built them, and I'd love to hear about yours.</p>
+        <a href="mailto:maduekechrisantus923@gmail.com" class="btn">Send Me An Email →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>BIG MARIO</span> — BUILT WITH NEXT.JS
+</footer>
+
+</body>
+</html>
